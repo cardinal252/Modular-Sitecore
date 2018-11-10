@@ -4,13 +4,13 @@ This represents a helix alternative architecture to allow bundle based deploymen
 
 ## Fundamentals
 
-NO 2 modules can ever deliver the same file
+* NO 2 modules can ever deliver the same file
 
-All developers have the same publish location, generally we use p drive for source and x drive for runtime code. There are many approaches to achieving having a P and X drive, you can either use the subst command (add it to registry keys to make it permanent), a mounted VHD or a partition.
+* All developers have the same publish location, generally we use p drive for source and x drive for runtime code. There are many approaches to achieving having a P and X drive, you can either use the subst command (add it to registry keys to make it permanent), a mounted VHD or a partition.
 
-All configuration should be set up for the deployment process - this usually means tokenised by default, developer configuration should be performed as patches as a rule
+* All configuration should be set up for the deployment process - this usually means tokenised by default, developer configuration should be performed as patches as a rule
 
-Developers should maintain their own connection strings in their runtime environment
+* Developers should maintain their own connection strings in their runtime environment
 
 ## Folder Structure
 
