@@ -1,0 +1,1 @@
+Here would go source code for a specific module that is intended to be delivered by nuget
