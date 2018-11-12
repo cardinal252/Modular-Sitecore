@@ -11,7 +11,7 @@ This represents a helix alternative reference architecture to allow bundle based
 
 ### Dependency
 
-[Architecture Dependency Diagram](Diagrams/sba.png)
+[Architecture Dependency Diagram](https://raw.githubusercontent.com/cardinal252/Modular-Sitecore/master/Diagrams/SBA.png)
 
 * Module bundles can only be tightly coupled to Core bundles.
 * Module bundles may be delivered without delivering other Modules. 
