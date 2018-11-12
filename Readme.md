@@ -20,6 +20,7 @@ This represents a helix alternative reference architecture to allow bundle based
 
 * All Core bundles require complete solution redelivery.
 * Core bundles may share dependencies and interdepend on each other.
+* NO 2 modules can ever deliver the same file
 
 ## Conventions
 
@@ -38,8 +39,6 @@ Modules - These are units of functionality present within the site, they would r
 Build - This contains scripts to specifically help with automating the generation of the site for developers or the build server.
 
 ### Delivery
-
-* NO 2 modules can ever deliver the same file
 
 * All configuration should be set up for the deployment process - this usually means tokenised by default, developer configuration should be performed as patches as a rule
 
