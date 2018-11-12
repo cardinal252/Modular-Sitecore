@@ -8,8 +8,10 @@ This represents a helix alternative reference architecture to allow bundle based
 
 * A bundle is a unit of work to be delivered.
 * There are 2 types of bundle - core and module.
-* Module bundles can only be tightly coupled to Core bundles and may be delivered in isolation.
-* Core bundles may share dependencies and interdepend on each other - they are always delivered together.
+* Module bundles can only be tightly coupled to Core bundles.
+* Module bundles may be delivered without delivering other Modules. 
+* All Core bundles require complete solution redelivery.
+* Core bundles may share dependencies and interdepend on each other.
 * Module bundles may have loose coupling between them (e.g. via IoC containers or Sitecore content).
 * Delivery projects may depend on 1 or more dependent projects within the same bundle (so long as it does not violate the other fundamentals).
 
