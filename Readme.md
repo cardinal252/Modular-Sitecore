@@ -4,24 +4,30 @@ This represents a helix alternative reference architecture to allow bundle based
 
 ## Architecture Principles
 
-### Dependency
+### Fundamentals
 
 * A bundle is a unit of work to be delivered.
 * There are 2 types of bundle - core and module.
+
+### Dependency
+
 * Module bundles can only be tightly coupled to Core bundles.
 * Module bundles may be delivered without delivering other Modules. 
-* All Core bundles require complete solution redelivery.
-* Core bundles may share dependencies and interdepend on each other.
 * Module bundles may have loose coupling between them (e.g. via IoC containers or Sitecore content).
 * Delivery projects may depend on 1 or more dependent projects within the same bundle (so long as it does not violate the other fundamentals).
+
+### Delivery
+
+* All Core bundles require complete solution redelivery.
+* Core bundles may share dependencies and interdepend on each other.
+
+## Conventions
 
 ### Delivery & Dependent Projects
 
 Delivery projects are visual studio publishable projects that. Often they can be used as a way of bringing together functionality within a module or core group. Generally a bundle will have one single delivery project
 
 Dependent projects are visual studio projects that will not be directly published as part of a build, they will be delivered within a module as part of a conduit.
-
-## Conventions
 
 ### Folder Structure
 
