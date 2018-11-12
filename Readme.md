@@ -11,6 +11,8 @@ This represents a helix alternative reference architecture to allow bundle based
 
 ### Dependency
 
+[Architecture Dependency Diagram](Diagrams/sba.png)
+
 * Module bundles can only be tightly coupled to Core bundles.
 * Module bundles may be delivered without delivering other Modules. 
 * Module bundles may have loose coupling between them (e.g. via IoC containers or Sitecore content).
