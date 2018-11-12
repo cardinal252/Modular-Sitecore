@@ -1,58 +1,74 @@
 # Sitecore Bundle Architecture
 
-This represents a helix alternative architecture to allow bundle based deployments in your sitecore solutions
+This represents a helix alternative reference architecture to allow bundle based deployments in your sitecore solutions
 
-## Fundamentals
+## Archictecture Principles
 
-* NO 2 modules can ever deliver the same file
+### Dependency
 
-* All developers have the same publish location, generally we use p drive for source and x drive for runtime code. There are many approaches to achieving having a P and X drive, you can either use the subst command (add it to registry keys to make it permanent), a mounted VHD or a partition.
+* There are 2 types of bundle - core and module.
+* Module bundles can only be tightly coupled to Core bundles.
+* Core bundles may interdepend on each other - they are always delivered together.
+* Modules may have loose coupling between them (e.g. via IoC containers or Sitecore content).
+* Delivery projects may depend on 1 or more dependent projects within the same bundle (so long as it does not violate the other fundamentals).
 
-* All configuration should be set up for the deployment process - this usually means tokenised by default, developer configuration should be performed as patches as a rule
+### Delivery & Dependent Projects
 
-* Developers should maintain their own connection strings in their runtime environment
+Delivery projects are visual studio publishable projects that. Often they can be used as a way of bringing together functionality within a module or core group. Generally a bundle will have one single delivery project
 
-* The "Platform" is a composition of Sitecore modules plus core & kernel deliverables, it represents the basis on which all of your modules can run. Any modifications to kernel / core or Sitecore modules mandate a full redeploy and regression test.
-## Folder Structure
+Dependent projects are visual studio projects that will not be directly published as part of a build, they will be delivered within a module as part of a conduit.
 
-Core - For the most part core assemblies are very low level very generic integrations to encapsulate functionality that is not likely to change unless fundamental elements of Sitecore or the .Net framework change. Examples of this might be unit testable / pluggable wrappers for sending an email (note - not the composition of the email).
+## Conventions
 
-Kernel - Kernel is slightly more frequently changed than core, this is likely to be things like SSO type functionality on which your modules can depend. Any kernel changes should mandate a complete redeployment of the solution.
+### Folder Structure
+
+Core - Core projects are not changed often, they are likely to be things like SSO type functionality on which your modules can depend. Any core changes should mandate a complete redeployment of the solution.
 
 Modules - These are units of functionality present within the site, they would represent bundles of functionality that belong together and would be deployed together. They cannot be coupled to other modules except by loose coupling via Sitecore content or IoC containers. Modules are of the size of the developers choosing. Generally AT LEAST one module per site.
 
-Services - The services are responsible for api type functionality. Services can choose not to rely on the platform
-
 Build - This contains scripts to specifically help with automating the generation of the site for developers or the build server.
 
+### Delivery
 
-## Configuration Conventions
+* NO 2 modules can ever deliver the same file
 
-* App_Config\Connectionstrings.config.deploy - this must be controlled by the platform (usually in a kernel or from a build pipeline)
+* All configuration should be set up for the deployment process - this usually means tokenised by default, developer configuration should be performed as patches as a rule
+
+* Configuration files ending in .deploy should be enabled during the delivery pipeline
+
+* MS configuration transforms should be avoided unless absolutely necessary.
+
+### Development
+
+* All developers have the same publish location, generally we use p drive for source and x drive for runtime code. There are many approaches to achieving having a P and X drive, you can either use the subst command (add it to registry keys to make it permanent), a mounted VHD or a partition.
+
+* Developers should maintain their own connection strings in their runtime environment
+
+* Only one delivery project per module
+
+### Configuration
+
+* App_Config\Connectionstrings.config.deploy - this must be controlled by the platform (usually in a core or from a build pipeline)
 * App_Config\Include\\<Module Name>\xxx.config - configuration specific for a module
 * App_Config\Include\zzzDeploy\\<Module Name>\xxx.config.deploy - configuration that can only be used on deployed servers (should be renamed by your build pipeline)
 * App_Config\Include\zzzDeployCM\\<Module Name>\xxx.config.deploy - the entire zzzDeployCM folder should be removed for CD servers. Configuration that can only be used on deployed CM servers (should be renamed by your build pipeline)
 * App_Config\Include\zzzDeployCD\\<Module Name>\xxx.config.deploy- the entire zzzDeployCD folder should be removed for CM servers. Configuration that can only be used on deployed CD servers (should be renamed by your build pipeline)
 * App_Config\Include\zzzDeveloper\\<Module Name>\xxx.config - configuration to make the developers environments run
 
-## Deployment helpers
+## Helpers
+
+### Deployment helpers
 
 DeploymentValidation.ps1 - This publishes all of the source and ensures that the file names are all isolated. In many scenarios, this could be ran by the build server on a CI pipeline to ensure developers haven't broken this rule
 
 CompleteDeploy.ps1 - This is for getting your development environment up to date - it performs a publish of everything thing the source using the Dev profile.
 
-## Project Generation
+### Project Generation
 
 There are powershell scripts in the Templates folder.
 
-./Templates/Conduit/CreateProject.ps1 -ProjectFolder "MyNewFeature" -ProjectName "xxx.MyNewFeature"
-./Templates/Module/CreateProject.ps1 -ProjectFolder "MyNewFeature" -ProjectName "xxx.MyNewFeature"
+./Templates/Delivery/CreateProject.ps1 -ProjectFolder "MyNewFeature" -ProjectName "xxx.MyNewFeature"
+./Templates/Dependent/CreateProject.ps1 -ProjectFolder "MyNewFeature" -ProjectName "xxx.MyNewFeature"
 
 Once generated (in the outputs directory beneath the conduit / module folder), these need to be copied to their final destination and added to the solution file for that area.
-
-## Conduit & Satellite Projects
-
-Conduits are visual studio publishable projects that are publishable and provide content. Often they can be used as a way of bringing together functionality within a module or kernel group. They have key .csproj amends to allow them to be deployed without deploying every web project. A conduit can be standalone or bring together 1 or more modules.
-
-Satellites are visual studio projects that will not be directly published as part of a visual studio projects, they will be delivered within a module as part of a conduit.
 

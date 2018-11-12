@@ -1,3 +1,3 @@
-In here goes core projects that are extremely low level. This would be functionality like wrapping the .net email functionality or very low level sitecore functionality.
+The kernel is responsible for building all of the code to bring together the platform. This is fairly low level sitecore implementation wide functionality.
 
-All of the references in here should be provided as nuget packages to tiers above
+Within kernel bundles you can have tiers.

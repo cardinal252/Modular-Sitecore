@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2019
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelixMk2.Modules.Framework.Conduit", "Framework.Conduit\HelixMk2.Modules.Framework.Conduit.csproj", "{886D330E-B2A2-4EF4-A7F3-8AEAF3ACCCE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelixMk2.Modules.Complex.Delivery", "Complex.Delivery\HelixMk2.Modules.Complex.Delivery.csproj", "{886D330E-B2A2-4EF4-A7F3-8AEAF3ACCCE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelixMk2.Framework.Feature.Navigation", "Framework.Feature.Navigation\HelixMk2.Framework.Feature.Navigation.csproj", "{BFE7FB8C-5E6B-4C3F-A59F-3BE541DE3E44}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelixMk2.Complex.Feature.Navigation", "Complex.Feature.Navigation\HelixMk2.Complex.Feature.Navigation.csproj", "{BFE7FB8C-5E6B-4C3F-A59F-3BE541DE3E44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
