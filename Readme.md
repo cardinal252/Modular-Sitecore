@@ -30,10 +30,10 @@ Build - This contains scripts to specifically help with automating the generatio
 
 * App_Config\Connectionstrings.config.deploy - this must be controlled by the platform (usually in a kernel or from a build pipeline)
 * App_Config\Include\<Module Name>\xxx.config - configuration specific for a module
-* App_Config\Include\zzzDeploy\<Module Name>\xxx.config.deploy - configuration that can only be used on deployed servers (should be renamed by your build pipeline)
-* App_Config\Include\zzzDeployCM\<Module Name>\xxx.config.deploy - the entire zzzDeployCM folder should be removed for CD servers. Configuration that can only be used on deployed CM servers (should be renamed by your build pipeline)
-* App_Config\Include\zzzDeployCD\<Module Name>\xxx.config.deploy- the entire zzzDeployCD folder should be removed for CM servers. Configuration that can only be used on deployed CD servers (should be renamed by your build pipeline)
-* App_Config\Include\zzzDeveloper\<Module Name>\xxx.config - configuration to make the developers environments run
+* App_Config\Include\zzzDeploy\\<Module Name>\xxx.config.deploy - configuration that can only be used on deployed servers (should be renamed by your build pipeline)
+* App_Config\Include\zzzDeployCM\\<Module Name>\xxx.config.deploy - the entire zzzDeployCM folder should be removed for CD servers. Configuration that can only be used on deployed CM servers (should be renamed by your build pipeline)
+* App_Config\Include\zzzDeployCD\\<Module Name>\xxx.config.deploy- the entire zzzDeployCD folder should be removed for CM servers. Configuration that can only be used on deployed CD servers (should be renamed by your build pipeline)
+* App_Config\Include\zzzDeveloper\\<Module Name>\xxx.config - configuration to make the developers environments run
 
 ## Deployment helpers
 
@@ -50,7 +50,9 @@ There are powershell scripts in the Templates folder.
 
 Once generated (in the outputs directory beneath the conduit / module folder), these need to be copied to their final destination and added to the solution file for that area.
 
-## Conduits & Modules
+## Conduit & Satellite Projects
 
-Conduits are visual studio publishable projects that are publishable and provide content. Often they can be used as a way of bringing together functionality within a module or kernel group. They have key .csproj amends to allow them to be 
+Conduits are visual studio publishable projects that are publishable and provide content. Often they can be used as a way of bringing together functionality within a module or kernel group. They have key .csproj amends to allow them to be deployed without deploying every web project. A conduit can be standalone or bring together 1 or more modules.
+
+Satellites are visual studio projects that will not be directly published as part of a visual studio projects, they will be delivered within a module as part of a conduit.
 
