@@ -29,7 +29,7 @@ Build - This contains scripts to specifically help with automating the generatio
 ## Configuration Conventions
 
 * App_Config\Connectionstrings.config.deploy - this must be controlled by the platform (usually in a kernel or from a build pipeline)
-* App_Config\Include\<Module Name>\xxx.config - configuration specific for a module
+* App_Config\Include\\<Module Name>\xxx.config - configuration specific for a module
 * App_Config\Include\zzzDeploy\\<Module Name>\xxx.config.deploy - configuration that can only be used on deployed servers (should be renamed by your build pipeline)
 * App_Config\Include\zzzDeployCM\\<Module Name>\xxx.config.deploy - the entire zzzDeployCM folder should be removed for CD servers. Configuration that can only be used on deployed CM servers (should be renamed by your build pipeline)
 * App_Config\Include\zzzDeployCD\\<Module Name>\xxx.config.deploy- the entire zzzDeployCD folder should be removed for CM servers. Configuration that can only be used on deployed CD servers (should be renamed by your build pipeline)
