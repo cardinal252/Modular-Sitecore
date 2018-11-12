@@ -18,9 +18,9 @@ This represents a helix alternative reference architecture to allow bundle based
 
 ### Delivery
 
-* All Core bundles require complete solution redelivery.
-* Core bundles may share dependencies and interdepend on each other.
-* NO 2 modules can ever deliver the same file
+* Any core bundle change require complete solution redelivery.
+* Core bundles may share dependencies and interdepend on each other (they are delivered together).
+* NO 2 bundles (across core and module) can ever deliver the same file.
 
 ## Conventions
 
