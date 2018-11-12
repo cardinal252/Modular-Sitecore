@@ -2,7 +2,7 @@
 
 This represents a helix alternative reference architecture to allow bundle based deployments in your sitecore solutions
 
-## Archictecture Principles
+## Architecture Principles
 
 ### Dependency
 
