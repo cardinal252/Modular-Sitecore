@@ -6,6 +6,7 @@ This represents a helix alternative reference architecture to allow bundle based
 
 ### Dependency
 
+* A bundle is a unit of work to be delivered.
 * There are 2 types of bundle - core and module.
 * Module bundles can only be tightly coupled to Core bundles.
 * Core bundles may interdepend on each other - they are always delivered together.
